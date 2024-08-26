@@ -28,14 +28,12 @@ public class TransferService {
             return "Insufficient funds";
         }
 
-        // 이체
         fromAccount.setBalance(fromAccount.getBalance() - amount);
         toAccount.setBalance(toAccount.getBalance() + amount);
 
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
 
-        // 트랜잭션 기록
         Transaction fromTransaction = new Transaction();
         fromTransaction.setAmount(-amount);
         fromTransaction.setAccount(fromAccount);
